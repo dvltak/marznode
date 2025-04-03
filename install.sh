@@ -182,6 +182,10 @@ services:
       SSL_CLIENT_CERT_FILE: "/var/lib/marznode/client.pem"
       SSL_KEY_FILE: "./server.key"
       SSL_CERT_FILE: "./server.cert"
+      INSECURE: "True"
+      XRAY_RESTART_ON_FAILURE: "True"
+      XRAY_RESTART_ON_FAILURE_INTERVAL: "5"
+      AUTH_GENERATION_ALGORITHM: "plain"
     volumes:
       - ${INSTALL_DIR}:/var/lib/marznode
 EOF
