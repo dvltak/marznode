@@ -94,15 +94,15 @@ get_certificate() {
 }
 
 show_xray_versions() {
-    log "Available Xray versions:"
-    curl -s "$GITHUB_API" | jq -r '.[0:10] | .[] | .tag_name' | nl
+    log "Available Xray versions (latest 20):"
+    curl -s "$GITHUB_API" | jq -r '.[0:20] | .[] | .tag_name' | nl
 }
 
 select_xray_version() {
     show_xray_versions
     local choice
-    read -p "Select Xray version (1-10): " choice
-    local selected_version=$(curl -s "$GITHUB_API" | jq -r ".[0:10] | .[$((choice-1))] | .tag_name")
+    read -p "Select Xray version (1-20): " choice
+    local selected_version=$(curl -s "$GITHUB_API" | jq -r ".[0:20] | .[$((choice-1))] | .tag_name")
 
     echo "Selected Xray version: $selected_version"
     while true; do
